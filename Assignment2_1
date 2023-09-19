@@ -1,0 +1,33 @@
+.data
+
+area: .asciiz "\nthe area is: "
+length: .asciiz "\nPlease provide length: "
+width: .asciiz "\nplease provide width: "
+
+.text
+la $a0, length
+li $v0, 4              # prints length prompt
+syscall
+
+
+lengthInput: li $v0, 5     # reads length from user
+syscall
+move $t0, $v0              # stores length in $t0
+
+la $a0, width
+li $v0, 4               # prints width promp
+syscall
+
+widthInput: li $v0, 5         # reads width from user
+syscall
+move $t1, $v0                 # stores width in $t1
+
+mult $t0, $t1    #multiplies for area
+
+la $a0, area        # displays area output String
+li $v0, 4
+syscall
+
+mflo $a0            # loads mult result
+li $v0,1            # prints mult result
+syscall
